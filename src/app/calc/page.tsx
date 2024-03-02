@@ -1,7 +1,4 @@
-'use client'
-
 import { useState } from "react"
-import Page from './Page.module.css'
 import { Anchor, Button } from "@mantine/core"
 import Link from "next/link"
 

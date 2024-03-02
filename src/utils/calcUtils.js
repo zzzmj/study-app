@@ -1,3 +1,5 @@
+import { uniqueId } from "lodash"
+
 export const getNumberFromLen = numberLength => {
     var num = Math.random()
     while (num < Math.pow(10, numberLength - 1)) {
@@ -43,13 +45,7 @@ const getCalcData = (type = 1, count = 10) => {
         const a = getNumberFromLen(3)
         const b = getNumberFromLen(3)
         return {
-            formula: (
-                <div className="divide-wrap">
-                    {a}
-                    <div className='divider'></div>
-                    {b}
-                </div>
-            ),
+            data: [a, b],
             formatAnswer: formatAnswerNumber(a / b, 3),
             // 误差小于3%
             errorAnalysis: (input, answer) => {
@@ -71,13 +67,6 @@ const getCalcData = (type = 1, count = 10) => {
             formatAnswer = formatAnswerNumber(a / b, 2)
         }
         return {
-            formula: (
-                <div>
-                    {a}
-                    <div className='divider'></div>
-                    {b}
-                </div>
-            ),
             formatAnswer: formatAnswerNumber(a / b, 2),
             // 误差小于1
             errorAnalysis: (input, answer) => Math.abs(input - answer) <= 1,
@@ -90,15 +79,6 @@ const getCalcData = (type = 1, count = 10) => {
         // 增长率
         const b = getNumberFromLen(3) / 10
         return {
-            formula: (
-                <div>
-                    <span>
-                        {a} * {b}%
-                    </span>
-                    <div className='divider'></div>
-                    <span>1 + {b}%</span>
-                </div>
-            ),
             formatAnswer: Math.round((a * (b / 100)) / (1 + b / 100)),
             // 误差5%以内
             errorAnalysis: (input, answer) =>
@@ -111,11 +91,6 @@ const getCalcData = (type = 1, count = 10) => {
         const a = getNumberFromLen(3)
         const b = getNumberFromLen(3)
         return {
-            formula: (
-                <div>
-                    {a}+{b}
-                </div>
-            ),
             formatAnswer: a + b,
             // 不能有误差
             errorAnalysis: (input, answer) => input - answer === 0,
@@ -126,11 +101,6 @@ const getCalcData = (type = 1, count = 10) => {
         const a = getNumberFromLen(3)
         const b = getNumberFromLen(3)
         return {
-            formula: (
-                <div>
-                    {a}-{b}
-                </div>
-            ),
             formatAnswer: a - b,
             // 不能有误差
             errorAnalysis: (input, answer) => input - answer === 0,
@@ -141,11 +111,6 @@ const getCalcData = (type = 1, count = 10) => {
         const a = getNumberFromLen(2)
         const b = getNumberFromLen(2)
         return {
-            formula: (
-                <div>
-                    {a} * {b}
-                </div>
-            ),
             formatAnswer: a * b,
             // 误差控制在3%
             errorAnalysis: (input, answer) =>
@@ -161,11 +126,6 @@ const getCalcData = (type = 1, count = 10) => {
             b = getNumberFromLen(1)
         }
         return {
-            formula: (
-                <div>
-                    {a} * {b}
-                </div>
-            ),
             formatAnswer: a * b,
             // 误差为0
             errorAnalysis: (input, answer) => input - answer === 0,
@@ -181,11 +141,6 @@ const getCalcData = (type = 1, count = 10) => {
             b = getNumberFromLen(1)
         }
         return {
-            formula: (
-                <div>
-                    {a} * {b}
-                </div>
-            ),
             formatAnswer: a * b,
             // 误差控制在3%
             errorAnalysis: (input, answer) => input - answer === 0,
@@ -197,11 +152,6 @@ const getCalcData = (type = 1, count = 10) => {
         const a = getNumberFromLen(3)
         const b = getNumberFromLen(3)
         return {
-            formula: (
-                <div>
-                    {a} * {b}
-                </div>
-            ),
             formatAnswer: formatAnswerNumber(a * b, 3),
             // 误差控制在3%
             errorAnalysis: (input, answer) =>
@@ -243,7 +193,6 @@ const getCalcData = (type = 1, count = 10) => {
         return () => {
             index += 1
             return {
-                formula: <div>{arr[index]}</div>,
                 formatAnswer: map[arr[index]],
                 errorAnalysis: (input, answer) => input - answer === 0,
             }
@@ -267,12 +216,12 @@ const getCalcData = (type = 1, count = 10) => {
     for (let i = 0; i < count; i++) {
         let answerObj = mapTypeToFn[type]()
         const obj = {
-            input: '',
-            time: '',
+            id: uniqueId(),
             ...answerObj,
         }
         arr.push(obj)
     }
+    console.log('执行了吗')
     return arr
 }
 
