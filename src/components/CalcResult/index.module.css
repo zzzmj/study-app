@@ -1,4 +1,4 @@
 
-.kb-wrap {
-    grid-template-columns: repeat(3, 1fr);
+.card {
+    background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
 }

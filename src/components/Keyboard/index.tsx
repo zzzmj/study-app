@@ -14,7 +14,7 @@ const Keyboard = ({ onChange, onSubmit, onCancel }: any) => {
                 </Button>
             })}
             <Button onClick={onCancel} radius={0} variant='light' color="rgba(8, 8, 8, 1)" className='flex-center h-20 text-xl'>清除</Button>
-            <Button radius={0}  variant="light" color="gray" className='flex-center h-20 text-3xl'>
+            <Button onClick={() => onChange(0)} radius={0}  variant="light" color="gray" className='flex-center h-20 text-3xl'>
                 0
             </Button>
             <Button onClick={onSubmit} radius={0} className='flex-center h-20 text-xl'>提交</Button>
