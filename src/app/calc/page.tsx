@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { Anchor, Button } from "@mantine/core"
 import Link from "next/link"
 
@@ -15,8 +14,6 @@ import Link from "next/link"
 <Radio value={10}>2*1乘法</Radio> */}
 
 const Calc = () => {
-    const [progress, setProgress] = useState(0)
-
 
     return <div className="min-h-screen p-3">
         <div className="text-gray-600 mb-2">基础计算</div>
