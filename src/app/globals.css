@@ -23,3 +23,8 @@
   justify-content: center;
   align-items: center;
 }
+
+@font-face {
+  font-family: 'YaoSuiXin';
+  src: url(/YaoSuiXinShouXieTi-2.ttf);
+}
