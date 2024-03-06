@@ -75,9 +75,9 @@ const CalcResult = ({ data = testData, time = 60 }: any) => {
     }, [data])
 
     return (
-        <div className="p-4">
+        <div className="p-4 max-w-3xl m-auto">
             <Card withBorder radius="md" className={classes.card}>
-                <div className="flex mb-6 justify-between items-center px-4">
+                <div className="flex mb-2 justify-between items-center px-4">
                     <div className='flex-center'>
                         <RingProgress
                             sections={[{ value: accuracy, color: 'teal' }]}
@@ -112,7 +112,7 @@ const CalcResult = ({ data = testData, time = 60 }: any) => {
                                 <Table.Tr bg={cls} key={index}>
                                     <Table.Td className="text-center">
                                         <Text>{data[0]}</Text>
-                                        <Divider className="w-[40%] m-auto !my-1" my="sm" color="#333" />
+                                        <Divider className="w-[40%] m-auto !my-0" my="sm" color="#333" />
                                         <Text>{data[1]}</Text>
                                     </Table.Td>
                                     <Table.Td className="text-center">
