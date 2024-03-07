@@ -24,16 +24,18 @@ const Calc = () => {
     return (
         <div>
             <div className="text-gray-600 mb-2">基础计算</div>
-
             <div className="flex">
-                <Anchor component={Link} href="/admin/calc/division">
-                    <Button variant="filled" size="md">
-                        除法
-                    </Button>
-                </Anchor>
+                <Button component={Link} href="/admin/calc/division" variant="filled" size="md">
+                    除法
+                </Button>
             </div>
 
-            <div className="flex-center"></div>
+            <div className="text-gray-600 mb-2 mt-8">重点题型</div>
+            <div className="flex">
+                <Button component={Link} href="/admin/calc/mixed-rate" variant="filled" size="md">
+                    混合增长率
+                </Button>
+            </div>
         </div>
     )
 }

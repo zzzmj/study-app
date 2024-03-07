@@ -28,3 +28,7 @@
   font-family: 'YaoSuiXin';
   src: url(/YaoSuiXinShouXieTi-2.ttf);
 }
+
+.custom-main-height {
+  height: calc(100vh - var(--app-shell-header-offset, 0px) - var(--app-shell-footer-offset, 0px) - 2 * var(--app-shell-padding));
+}

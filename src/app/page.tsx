@@ -1,7 +1,6 @@
 import Header from '@/components/Header'
 import { WebsiteLogo } from '@/components/WebsiteLogo'
 import { Anchor, Box, Button, Card, Grid, Text } from '@mantine/core'
-import classes from './page.module.css'
 import cn from '@/utils/cn'
 import Link from 'next/link'
 
@@ -43,7 +42,7 @@ export default function Home() {
                     moduleList.map((item, index) => {
                         return (
                             <Anchor key={index}>
-                                <Card shadow="sm" padding="lg" radius="md" withBorder className={cn(classes['sx-font'], 'flex-center flex-col')}>
+                                <Card shadow="sm" padding="lg" radius="md" withBorder className={cn('flex-center flex-col font-["YaoSuiXin"]')}>
                                     <Text className='text-5xl'>{item.text}</Text>
                                     <Text className='text-xl'>{item.letter}</Text>
                                 </Card>

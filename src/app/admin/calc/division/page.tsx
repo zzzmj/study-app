@@ -1,15 +1,14 @@
 'use client'
 
 import { useEffect, useMemo, useRef, useState } from 'react'
-import classes from './Page.module.css'
 import getCalcData from '@/utils/calcUtils'
 import cn from '@/utils/cn'
 import CalcProgress from '@/components/CalcProgress'
 import { Divider, PinInput, Text, rem } from '@mantine/core'
 import { Carousel } from '@mantine/carousel'
-import '@mantine/carousel/styles.css'
 import Keyboard from '@/components/Keyboard'
 import CalcResult from '@/components/CalcResult'
+import '@mantine/carousel/styles.css'
 
 const Division = () => {
     const [progress, setProgress] = useState<number>(0)
@@ -70,7 +69,7 @@ const Division = () => {
     if (dataSource.length <= 0) return
 
     return !showResult ? (
-        <div className={cn(classes.wrap, 'flex flex-col justify-between max-w-2xl m-auto relative h-full')}>
+        <div className={cn('flex flex-col justify-between max-w-2xl m-auto relative h-full')}>
             <div>
                 <CalcProgress value={progress} />
                 <Text className="mt-4 flex-center" c={'dimmed'} fz="lg" fw={500}>
