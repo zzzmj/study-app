@@ -5,6 +5,7 @@ import { Anchor, AppShell, Button, Burger, NavLink } from '@mantine/core'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { IconGauge, IconFingerprint, IconActivity, IconChevronRight } from '@tabler/icons-react'
+import { useDisclosure } from '@mantine/hooks'
 
 const navLinkList = [
     { href: '/admin/calc', label: '资料分析', },
@@ -15,16 +16,18 @@ const navLinkList = [
 
 export default function AdminLayout({ children }: any) {
     // const router = useRouter()
+    const [opened, { toggle }] = useDisclosure()
     const pathname = usePathname()
+
+
     return (
         <AppShell
             header={{ height: 50 }}
             navbar={{
                 width: 200,
                 breakpoint: 'sm',
-                // collapsed: { mobile: !opened },
+                collapsed: { mobile: !opened },
             }}
-            padding="md"
         >
             <AppShell.Header className="flex items-center px-4 justify-between">
                 <WebsiteLogo size={105} />
@@ -35,7 +38,7 @@ export default function AdminLayout({ children }: any) {
             <AppShell.Navbar p="md">
                 {
                     navLinkList.map((item, index) => {
-                        return <NavLink mod={{ active: pathname === item.href}} key={index} component={Link} href={item.href} label={item.label} />
+                        return <NavLink mod={{ active: pathname.includes(item.href)}} key={index} component={Link} href={item.href} label={item.label} />
                     })
                 }
             </AppShell.Navbar>

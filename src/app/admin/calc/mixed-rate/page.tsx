@@ -44,6 +44,16 @@ const getMixedData = () => {
     }
 }
 
+const getTemplate = (data: mixedObj) => {
+    const content = `2020年某市进口值为${data.A}万，增长率为${toPercentage(data.a)}，出口值为${data.B}万，增长率为${toPercentage(data.b)}`
+    const question = `进出口总值增长率为？`
+
+    return {
+        content,
+        question
+    }
+}
+
 const getOptions = (r: number) => {
     // 定义一个数组来保存所有选项
 
@@ -66,9 +76,15 @@ const getMixedDataList = (length = 1) => {
         dataList.push({
             content: d,
             options: getOptions(d.c),
+            template: getTemplate(d)
         })
     }
     return dataList
+}
+
+interface templateObj {
+    content: string
+    question: string
 }
 
 interface mixedObj {
@@ -83,6 +99,7 @@ interface mixedObj {
 interface dataListInterface {
     content: mixedObj
     options: number[]
+    template: templateObj
 }
 
 const MixedRatePage = () => {
@@ -103,7 +120,7 @@ const MixedRatePage = () => {
     const handleClickNext = () => {
         setRightOption(undefined)
         setProgress((p) => p + 1)
-        ;(emblaRef.current as any)?.scrollNext()
+        ; (emblaRef.current as any)?.scrollNext()
     }
 
     if (!dataList) return
@@ -121,19 +138,19 @@ const MixedRatePage = () => {
                 className={'mo-wrap carousel mt-4'}
             >
                 {dataList.map((item, index) => {
-                    const { content, options } = item
+                    const { template, content, options } = item
                     return (
                         <Carousel.Slide key={index}>
-                            <div className="max-w-3xl m-auto mt-4">
-                                <Text size="xl">
-                                    2020年中国进口值为{content.A}万，增长率为{toPercentage(content.a)}，2020年中国出口值为{content.B}
-                                    万，增长率为
-                                    {toPercentage(content.b)}。
-                                </Text>
-                                <Text className="mt-2" fw={'bold'} size="xl">
-                                    进出口总值增长率为？
-                                </Text>
-                            </div>
+                            {
+                                <div className="max-w-3xl m-auto mt-4">
+                                    <Text size="xl">
+                                        {template.content}
+                                    </Text>
+                                    <Text className="mt-2" fw={'bold'} size="xl">
+                                        {template.question}
+                                    </Text>
+                                </div>
+                            }
 
                             <div className="max-w-lg m-auto mt-10 flex flex-col">
                                 {options.map((item, key) => {

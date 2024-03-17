@@ -22,7 +22,7 @@ import Link from 'next/link'
 const Calc = () => {
     const [opened, { toggle }] = useDisclosure()
     return (
-        <div>
+        <div className='p-4'>
             <div className="text-gray-600 mb-2">基础计算</div>
             <div className="flex">
                 <Button component={Link} href="/admin/calc/division" variant="filled" size="md">
