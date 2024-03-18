@@ -1,7 +1,9 @@
 import cn from '@/utils/cn'
 import classes from './index.module.css'
 import { RingProgress, Text, Card, Divider, Grid, Table } from '@mantine/core'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
+import { Sketch } from '../Sketch'
+import { IconEdit } from '@tabler/icons-react'
 
 const testData = [
     {
@@ -70,6 +72,7 @@ const errorAnalysis = (input: number, answer: number) => {
     return Math.abs(input - answer) / answer <= 0.03
 }
 const CalcResult = ({ data = testData, time = 60 }: any) => {
+    const [sketchVisible, setSketchVisible] = useState(false)
     const accuracy = useMemo(() => {
         return (data.filter((item: any) => errorAnalysis(parseInt(item.value), item.formatAnswer))).length / data.length * 100
     }, [data])
@@ -89,6 +92,7 @@ const CalcResult = ({ data = testData, time = 60 }: any) => {
                         />
                     </div>
                     <Text fw={700} size='md'>完成时间：{time}s</Text>
+                    <IconEdit onClick={() => setSketchVisible(true)} />
                 </div>
 
                 <Table>
@@ -127,6 +131,7 @@ const CalcResult = ({ data = testData, time = 60 }: any) => {
                     </Table.Tbody>
                 </Table>
             </Card>
+            {sketchVisible && <Sketch onClose={() => setSketchVisible(false)} />}
         </div>
     )
 }
